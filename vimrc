@@ -69,7 +69,6 @@ syntax on
 set nocp
 
 " Let eclim handle autocompletion
-"let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
 
 " Set the theme
