@@ -26,20 +26,32 @@ set guioptions-=m
 " Disable the toolbar
 set guioptions-=T
 " Disable the Left Scrollbar
+set guioptions-=l
 set guioptions-=L
 " Disable the Right Scrollbar
 set guioptions-=r
+set guioptions-=R
+" Disable the GUI tabbar
+set guioptions-=e
 
 " Set correct tab and line handling
 set nowrap
 "set tabstop=8
 "set softtabstop=4
 "set shiftwidth=4
-set tabstop=4
-set softtabstop=2
-set shiftwidth=2
+"set tabstop=4
+"set softtabstop=2
+"set shiftwidth=2
+set tabstop=6
+set softtabstop=3
+set shiftwidth=3
 set expandtab
+
 set autoindent
+set smartindent
+
+" Display unfinished command
+set showcmd 
 
 " Line numbers
 set number
@@ -77,3 +89,11 @@ color molokai
 " LaTeX
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
+
+" System Clipboard
+set clipboard=unnamed
+
+" Search
+set ignorecase
+set incsearch
+set hls

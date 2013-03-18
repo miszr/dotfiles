@@ -9,7 +9,6 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
-local menubar = require("menubar")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -83,7 +82,7 @@ end
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
+    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[4])
 end
 -- }}}
 
@@ -132,10 +131,6 @@ mymainmenu = awful.menu({ items = { { "Awesome", myawesomemenu, beautiful.awesom
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
--- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- }}}
-
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
@@ -144,12 +139,14 @@ mytextclock = awful.widget.textclock()
 vicious = require("vicious")
 
 -- Initialize Widget
+noMailIcon = wibox.widget.imagebox()
+noMailIcon:set_image("/home/misz/.config/awesome/icons/nomail.png")
+newMailIcon = wibox.widget.imagebox()
+newMailIcon:set_image("/home/misz/.config/awesome/icons/mail.png")
+
 gmailWidget = wibox.widget.textbox()
 gmailWidget:set_align("center")
 gmailWidget:fit(32,32)
-gmailWidget.bg_resize = false
-gmailWidget.bg_align = "middle"
-gmailWidget.bg_image = wibox.widget.imagebox()
 gmailTooltip = awful.tooltip({ objects = { gmailWidget },})
 
 -- Register widget
@@ -157,13 +154,13 @@ vicious.register(gmailWidget, vicious.widgets.gmail,
                 function (widget, args)
 
                    if args["{count}"] == 0 then
-                        gmailWidget.bg_image:set_image("/home/misz/.config/awesome/icons/nomail.png")
+                        gmailTooltip:add_to_object(noMailIcon)
                     else
-                        gmailWidget.bg_image:set_image("/home/misz/.config/awesome/icons/mail.png")
+                        gmailTooltip:add_to_object(newMailIcon)
                     end
 
                     gmailTooltip:set_text(args["{subject}"])
-                    return "<span color=\"black\">" .. args["{count}"] .. "</span>"
+                    return "<span color=\"white\">" .. args["{count}"] .. "</span>"
                  end, 120) 
                  --the '120' here means check every 2 minutes.
 -- }}}
@@ -267,8 +264,30 @@ root.buttons(awful.util.table.join(
 ))
 -- }}}
 
+--Bindings
+local cmd =
+{
+    play = "mpc toggle",
+    stop = "mpc stop",
+    skip = "mpc next",
+    prev = "mpc prev",
+    volup = "amixer -q set Master 5%+ unmute",
+    voldn = "amixer -q set Master 5%- unmute",
+    mute = "amixer -q set Master toggle",
+}
+
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
+    -- Media keys
+    awful.key ( { }, "XF86AudioMute", function() awful.util.spawn ( cmd.mute ) end ),
+    awful.key ( { }, "XF86AudioLowerVolume", function() awful.util.spawn ( cmd.voldn ) end ),
+    awful.key ( { }, "XF86AudioRaiseVolume", function() awful.util.spawn ( cmd.volup ) end ),
+    awful.key ( { }, "XF86AudioPlay", function() awful.util.spawn ( cmd.play ) end ),
+    awful.key ( { }, "XF86AudioStop", function() awful.util.spawn ( cmd.stop ) end ),
+    awful.key ( { }, "XF86AudioPrev", function() awful.util.spawn ( cmd.prev ) end ),
+    awful.key ( { }, "XF86AudioNext", function() awful.util.spawn ( cmd.skip ) end ),
+
+
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
@@ -314,7 +333,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
-
+    
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
@@ -325,8 +344,8 @@ globalkeys = awful.util.table.join(
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
               end),
-    -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)
+    -- Dmenu 
+    awful.key({ modkey }, "p", function() awful.util.spawn("dmenu_run") end)
 )
 
 clientkeys = awful.util.table.join(
@@ -414,6 +433,10 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "Wine" },
       properties = { border_width = 0, floating = true } },
+    { rule = { class = "Plugin-container" },
+      properties = { floating = true } },
+    { rule = { class = "Steam" },
+      properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
@@ -424,12 +447,12 @@ awful.rules.rules = {
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c, startup)
     -- Enable sloppy focus
-    --c:connect_signal("mouse::enter", function(c)
-    --    if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-    --        and awful.client.focus.filter(c) then
-    --        client.focus = c
-    --    end
-    --end)
+    c:connect_signal("mouse::enter", function(c)
+        if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+            and awful.client.focus.filter(c) then
+            --client.focus = c
+        end
+    end)
 
     if not startup then
         -- Set the windows at the slave,
