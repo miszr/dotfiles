@@ -40,7 +40,7 @@ end
 beautiful.init("/usr/share/awesome/themes/galaxy/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
+terminal = "urxvt"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -56,16 +56,6 @@ local layouts =
 {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier
 }
 -- }}}
 
@@ -82,7 +72,7 @@ end
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[4])
+    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[2])
 end
 -- }}}
 
@@ -128,41 +118,41 @@ mymainmenu = awful.menu({ items = { { "Awesome", myawesomemenu, beautiful.awesom
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+--mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+--                                     menu = mymainmenu })
 
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
 
 -- {{{ Vicious Widgets
-vicious = require("vicious")
+--vicious = require("vicious")
 
 -- Initialize Widget
-noMailIcon = wibox.widget.imagebox()
-noMailIcon:set_image("/home/misz/.config/awesome/icons/nomail.png")
-newMailIcon = wibox.widget.imagebox()
-newMailIcon:set_image("/home/misz/.config/awesome/icons/mail.png")
-
-gmailWidget = wibox.widget.textbox()
-gmailWidget:set_align("center")
-gmailWidget:fit(32,32)
-gmailTooltip = awful.tooltip({ objects = { gmailWidget },})
+--noMailIcon = wibox.widget.imagebox()
+--noMailIcon:set_image("/home/misz/.config/awesome/icons/nomail.png")
+--newMailIcon = wibox.widget.imagebox()
+--newMailIcon:set_image("/home/misz/.config/awesome/icons/mail.png")
+--
+--gmailWidget = wibox.widget.textbox()
+--gmailWidget:set_align("center")
+--gmailWidget:fit(32,32)
+--gmailTooltip = awful.tooltip({ objects = { gmailWidget },})
 
 -- Register widget
-vicious.register(gmailWidget, vicious.widgets.gmail,
-                function (widget, args)
-
-                   if args["{count}"] == 0 then
-                        gmailTooltip:add_to_object(noMailIcon)
-                    else
-                        gmailTooltip:add_to_object(newMailIcon)
-                    end
-
-                    gmailTooltip:set_text(args["{subject}"])
-                    return "<span color=\"white\">" .. args["{count}"] .. "</span>"
-                 end, 120) 
-                 --the '120' here means check every 2 minutes.
+--vicious.register(gmailWidget, vicious.widgets.gmail,
+--                function (widget, args)
+--
+--                   if args["{count}"] == 0 then
+--                        gmailTooltip:add_to_object(noMailIcon)
+--                    else
+--                        gmailTooltip:add_to_object(newMailIcon)
+--                    end
+--
+--                    gmailTooltip:set_text(args["{subject}"])
+--                    return "<span color=\"white\">" .. args["{count}"] .. "</span>"
+--                 end, 120) 
+--                 --the '120' here means check every 2 minutes.
 -- }}}
 
 -- Create a wibox for each screen and add it
@@ -174,9 +164,9 @@ mytaglist.buttons = awful.util.table.join(
                     awful.button({ }, 1, awful.tag.viewonly),
                     awful.button({ modkey }, 1, awful.client.movetotag),
                     awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ modkey }, 3, awful.client.toggletag),
-                    awful.button({ }, 4, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)
+                    awful.button({ modkey }, 3, awful.client.toggletag)--,
+                    --awful.button({ }, 4, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),
+                    --awful.button({ }, 5, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)
                     )
 mytasklist = {}
 mytasklist.buttons = awful.util.table.join(
@@ -235,14 +225,14 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
-    left_layout:add(mylauncher)
+    --left_layout:add(mylauncher)
     left_layout:add(mytaglist[s])
     left_layout:add(mypromptbox[s])
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(gmailWidget)
+    --right_layout:add(gmailWidget)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
 
@@ -302,7 +292,7 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
+    --awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
@@ -424,6 +414,7 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
                      keys = clientkeys,
+                     size_hints_honor = false,
                      buttons = clientbuttons } },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
@@ -436,6 +427,8 @@ awful.rules.rules = {
     { rule = { class = "Plugin-container" },
       properties = { floating = true } },
     { rule = { class = "Steam" },
+      properties = { floating = true } },
+    { rule = { class = "libreoffice-writer" },
       properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
