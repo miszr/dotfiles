@@ -1,0 +1,24 @@
+XTerm*background: black
+XTerm*cursorColor: lightgray
+XTerm*foreground: white
+XTerm*metaSendsEscape: true
+
+UXTerm*background: black
+UXTerm*cursorColor: lightgray
+UXTerm*foreground: white
+UXTerm*metaSendsEscape: true
+
+
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintfull
+Xft.hinting: true
+Xft.antialias: true
+Xft.rgba: rgba
+
+URxvt.scrollBar: off                                                    
+
+URxvt*depth: 32
+URxvt*background: [40]#000000
+
+URxvt*foreground:#ffffff
