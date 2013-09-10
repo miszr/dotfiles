@@ -113,7 +113,7 @@ mymainmenu = awful.menu({ items = { { "Awesome", myawesomemenu, beautiful.awesom
                                     { "Applications", applicationMenu },
                                     { "Root Terminal", terminal .. " -e sudo su" },
                                     { "Open Terminal", terminal },
-                				    { "Computer", computerMenu }
+                                    { "Computer", computerMenu }
                                   }
                         })
 
@@ -130,10 +130,10 @@ mypromptbox = {}
 mylayoutbox = {}
 mytaglist = {}
 mytaglist.buttons = awful.util.table.join(
-                    awful.button({ }, 1, awful.tag.viewonly),
-                    awful.button({ modkey }, 1, awful.client.movetotag),
-                    awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ modkey }, 3, awful.client.toggletag)--,
+                    --awful.button({ }, 1, awful.tag.viewonly),
+                    --awful.button({ modkey }, 1, awful.client.movetotag),
+                    --awful.button({ }, 3, awful.tag.viewtoggle),
+                    --awful.button({ modkey }, 3, awful.client.toggletag),
                     --awful.button({ }, 4, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),
                     --awful.button({ }, 5, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)
                     )
@@ -154,23 +154,24 @@ mytasklist.buttons = awful.util.table.join(
                                                   client.focus = c
                                                   c:raise()
                                               end
-                                          end),
-                     awful.button({ }, 3, function ()
-                                              if instance then
-                                                  instance:hide()
-                                                  instance = nil
-                                              else
-                                                  instance = awful.menu.clients({ width=250 })
-                                              end
-                                          end),
-                     awful.button({ }, 4, function ()
-                                              awful.client.focus.byidx(1)
-                                              if client.focus then client.focus:raise() end
-                                          end),
-                     awful.button({ }, 5, function ()
-                                              awful.client.focus.byidx(-1)
-                                              if client.focus then client.focus:raise() end
-                                          end))
+                                          end)--,
+                     --awful.button({ }, 3, function ()
+                     --                         if instance then
+                     --                             instance:hide()
+                     --                             instance = nil
+                     --                         else
+                     --                             instance = awful.menu.clients({ width=250 })
+                     --                         end
+                     --                     end),
+                     --awful.button({ }, 4, function ()
+                     --                         awful.client.focus.byidx(1)
+                     --                         if client.focus then client.focus:raise() end
+                     --                     end),
+                     --awful.button({ }, 5, function ()
+                     --                         awful.client.focus.byidx(-1)
+                     --                         if client.focus then client.focus:raise() end
+                     --                     end))
+                     )
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
