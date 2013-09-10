@@ -37,7 +37,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/galaxy/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
@@ -54,7 +54,6 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
 {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
 }
 -- }}}
@@ -72,7 +71,7 @@ end
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[2])
+    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
 end
 -- }}}
 
@@ -124,36 +123,6 @@ mymainmenu = awful.menu({ items = { { "Awesome", myawesomemenu, beautiful.awesom
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
-
--- {{{ Vicious Widgets
---vicious = require("vicious")
-
--- Initialize Widget
---noMailIcon = wibox.widget.imagebox()
---noMailIcon:set_image("/home/misz/.config/awesome/icons/nomail.png")
---newMailIcon = wibox.widget.imagebox()
---newMailIcon:set_image("/home/misz/.config/awesome/icons/mail.png")
---
---gmailWidget = wibox.widget.textbox()
---gmailWidget:set_align("center")
---gmailWidget:fit(32,32)
---gmailTooltip = awful.tooltip({ objects = { gmailWidget },})
-
--- Register widget
---vicious.register(gmailWidget, vicious.widgets.gmail,
---                function (widget, args)
---
---                   if args["{count}"] == 0 then
---                        gmailTooltip:add_to_object(noMailIcon)
---                    else
---                        gmailTooltip:add_to_object(newMailIcon)
---                    end
---
---                    gmailTooltip:set_text(args["{subject}"])
---                    return "<span color=\"white\">" .. args["{count}"] .. "</span>"
---                 end, 120) 
---                 --the '120' here means check every 2 minutes.
--- }}}
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -215,7 +184,7 @@ for s = 1, screen.count() do
                            awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
     -- Create a taglist widget
-    mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
+    mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.noempty, mytaglist.buttons)
 
     -- Create a tasklist widget
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
@@ -232,9 +201,8 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    --right_layout:add(gmailWidget)
     right_layout:add(mytextclock)
-    right_layout:add(mylayoutbox[s])
+    -- right_layout:add(mylayoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
@@ -248,9 +216,9 @@ end
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
+    awful.button({ }, 3, function () mymainmenu:toggle() end)
+    --awful.button({ }, 4, awful.tag.viewnext),
+    --awful.button({ }, 5, awful.tag.viewprev)
 ))
 -- }}}
 
@@ -430,6 +398,8 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "libreoffice-writer" },
       properties = { floating = true } },
+    { rule = { class = "conky" },
+      properties = { floating = true, border_width = 0, focusable = false } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },

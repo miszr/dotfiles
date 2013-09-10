@@ -21,15 +21,19 @@ set guioptions-=e
 
 " Set correct tab and line handling
 set nowrap
-"set tabstop=8
-"set softtabstop=4
-"set shiftwidth=4
+
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+
 "set tabstop=4
 "set softtabstop=2
 "set shiftwidth=2
-set tabstop=6
-set softtabstop=3
-set shiftwidth=3
+
+"set tabstop=6
+"set softtabstop=3
+"set shiftwidth=3
+
 set expandtab
 
 set autoindent
@@ -65,9 +69,6 @@ syntax on
 
 set nocp
 
-" Let eclim handle autocompletion
-let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
-
 " Set the theme
 color molokai
 
@@ -89,3 +90,4 @@ hi Normal ctermbg=none
 hi LineNr ctermbg=none
 hi NonText ctermbg=none
 hi SignColumn ctermbg=none
+hi Folded ctermbg=none
