@@ -23,6 +23,10 @@ colored-man-pages
 extract
 vi-mode
 wd
+svn
+tmux
+sudo
+zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions src
 EOBUNDLES
@@ -31,5 +35,4 @@ antigen theme agnoster
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=4"
 
-source ${HOME}/.zsh/aliases.zsh
-source ${HOME}/.zsh/mkproj.zsh
+source ${HOME}/.zsh/custom.zsh
