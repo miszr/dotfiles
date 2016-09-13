@@ -9,9 +9,11 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
--- To stop Spotify from taking up half the screen
-naughty.config.defaults.icon_size        = 64
 local menubar = require("menubar")
+
+-- Reduce maximum notification size
+naughty.config.defaults.icon_size = 64
+naughty.config.defaults.width = 384
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -59,7 +61,6 @@ modkey = "Mod4"
 local layouts =
 {
     awful.layout.suit.tile,
-    awful.layout.suit.floating,
 }
 -- }}}
 
@@ -215,12 +216,23 @@ local cmd =
 globalkeys = awful.util.table.join(
     -- Media keys
     awful.key ( { }, "XF86AudioMute", function() awful.util.spawn ( cmd.mute ) end ),
+    awful.key ( { }, "XF86AudioMicMute", function() awful.util.spawn ( "amixer -q set Capture toggle" ) end ),
     awful.key ( { }, "XF86AudioLowerVolume", function() awful.util.spawn ( cmd.voldn ) end ),
     awful.key ( { }, "XF86AudioRaiseVolume", function() awful.util.spawn ( cmd.volup ) end ),
+
     awful.key ( { }, "XF86AudioPlay", function() awful.util.spawn ( cmd.play ) end ),
     awful.key ( { }, "XF86AudioStop", function() awful.util.spawn ( cmd.stop ) end ),
     awful.key ( { }, "XF86AudioPrev", function() awful.util.spawn ( cmd.prev ) end ),
     awful.key ( { }, "XF86AudioNext", function() awful.util.spawn ( cmd.skip ) end ),
+    awful.key ( { }, "XF86MonBrightnessUp", function() awful.util.spawn ( "light -A 10" ) end ),
+    awful.key ( { }, "XF86MonBrightnessDown", function() awful.util.spawn ( "light -U 10" ) end ),
+
+    -- Bind Lenovo F9-F12 fn keys to media
+    awful.key ( { }, "XF86Tools", function() awful.util.spawn ( cmd.play ) end ),
+    awful.key ( { }, "XF86Search", function() awful.util.spawn ( cmd.stop ) end ),
+    awful.key ( { }, "XF86LaunchA", function() awful.util.spawn ( cmd.prev ) end ),
+    awful.key ( { }, "XF86Explorer", function() awful.util.spawn ( cmd.skip ) end ),
+
 
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
@@ -279,7 +291,7 @@ globalkeys = awful.util.table.join(
               end),
 
     -- Dmenu 
-    awful.key({ modkey }, "p", function() awful.util.spawn("dmenu_run") end)
+    awful.key({ modkey }, "p", function() awful.util.spawn("dmenu_run -i") end)
 )
 
 clientkeys = awful.util.table.join(
