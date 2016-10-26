@@ -6,9 +6,6 @@ COMPLETION_WAITING_DOTS="true"
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="true"
-
 zstyle :compinstall filename '/home/misz/.zshrc'
 zstyle ":completion:*:commands" rehash true
 setopt completealiases
@@ -23,12 +20,9 @@ colored-man-pages
 extract
 vi-mode
 wd
-svn
-tmux
 sudo
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
-zsh-users/zsh-completions src
 EOBUNDLES
 
 antigen theme agnoster
