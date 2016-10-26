@@ -12,6 +12,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-airline/vim-airline'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-speeddating'
+Plugin 'jceb/vim-orgmode'
 call vundle#end()
 
 " Required by vundle

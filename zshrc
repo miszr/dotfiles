@@ -32,6 +32,7 @@ zsh-users/zsh-completions src
 EOBUNDLES
 
 antigen theme agnoster
+antigen apply
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=4"
 
