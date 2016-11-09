@@ -202,14 +202,14 @@ root.buttons(awful.util.table.join(
 --Bindings
 local cmd =
 {
-    play = "dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause",
-    stop = "dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop",
-    skip = "dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next",
-    prev = "dbus-send --type=method_call --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous",
+    play = "playerctl play-pause",
+    stop = "playerctl stop",
+    skip = "playerctl next",
+    prev = "playerctl previous",
 
-    volup = "amixer -q set Master 5%+ unmute",
-    voldn = "amixer -q set Master 5%- unmute",
-    mute  = "amixer -q set Master toggle",
+    volup = "amixer -q sset Master 5%+ unmute",
+    voldn = "amixer -q sset Master 5%- unmute",
+    mute  = "amixer -q sset Master toggle",
 }
 
 -- {{{ Key bindings
