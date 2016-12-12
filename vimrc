@@ -13,6 +13,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-speeddating'
+Plugin 'tpope/vim-fugitive'
 Plugin 'jceb/vim-orgmode'
 call vundle#end()
 
@@ -95,12 +96,10 @@ set encoding=utf-8
 " Set the theme
 set background=light
 if has('gui_running')
-    set guifont=DejavuSansMono\ 13
+    set guifont=DejavuSansMono\ for\ Powerline\ 13
 else 
     " Set terminal type
     set ttyfast
-    set t_Co=256
-    let g:solarized_termcolors=256
 endif
 color solarized
 
