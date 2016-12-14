@@ -15,6 +15,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-fugitive'
 Plugin 'jceb/vim-orgmode'
+Plugin 'mbbill/undotree'
+Plugin 'ctrlpvim/ctrlp.vim'
 call vundle#end()
 
 " Required by vundle
@@ -109,6 +111,7 @@ let g:tex_flavor = "latex"
 let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_ViewRule_pdf='evince'
 let g:Tex_ViewRule_dvi='evince'
+autocmd FileType tex imap <silent> <buffer> <C-space> <Plug>Tex_Completion
 
 " System Clipboard
 set clipboard=unnamed
@@ -172,3 +175,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 
 autocmd! bufwritepost vimrc source ~/.vimrc   " When vimrc is edited, reload it
+
+" undotree.vim
+if has("persistent_undo")
+    set undodir=~/.undodir/
+    set undofile
+endif
