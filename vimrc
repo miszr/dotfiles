@@ -106,9 +106,8 @@ color solarized
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
 let g:Tex_DefaultTargetFormat='pdf'
-let g:Tex_ViewRule_pdf='evince'
-let g:Tex_ViewRule_dvi='evince'
-autocmd FileType tex imap <silent> <buffer> <C-space> <Plug>Tex_Completion
+let g:Tex_ViewRule_pdf='evince &>/dev/null'
+let g:Tex_ViewRule_dvi='evince &>/dev/null'
 
 " System Clipboard
 set clipboard=unnamed
@@ -142,6 +141,7 @@ nnoremap <Leader>s :split
 nnoremap <Leader><TAB> gt
 nnoremap <Leader>m :!make<CR>
 nnoremap <Leader>c :noh<CR>
+nnoremap <Leader>b :CtrlPBuffer<CR>
 
 vmap <Leader>y "+y
 vmap <Leader>d "+d
@@ -177,6 +177,7 @@ if has("persistent_undo")
     set undofile
 endif
 
+autocmd FileType tex imap <silent> <buffer> <C-space> <Plug>Tex_Completion
 autocmd FileType vhdl setlocal shiftwidth=2
 autocmd FileType vhdl setlocal tabstop=2
 autocmd FileType vhdl setlocal softtabstop=2
