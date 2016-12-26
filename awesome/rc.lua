@@ -381,7 +381,7 @@ awful.rules.rules = {
                      keys = clientkeys,
                      size_hints_honor = false,
                      buttons = clientbuttons } },
-    { rule_any = { class = {"MPlayer", "pinentry", "gimp", "Plugin-container", "Steam", "libreoffice-writer", "CvbApp", "TopLevelShell", "MATLAB R2015b - academic use", "Spread0r"}},
+    { rule_any = { class = {"MPlayer", "pinentry", "gimp", "Plugin-container", "Steam", "libreoffice-writer", "CvbApp", "TopLevelShell", "MATLAB R2015b - academic use", "Spread0r", "Pinentry-gtk-2"}},
       properties = { floating = true } },
     { rule = { class = "Tk", name="Log Window" },
       properties = { floating = true } },
