@@ -44,18 +44,6 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
-autocmd FileType vhdl setlocal shiftwidth=2
-autocmd FileType vhdl setlocal tabstop=2
-autocmd FileType vhdl setlocal softtabstop=2
-
-"set tabstop=2
-"set softtabstop=2
-"set shiftwidth=2
-
-"set tabstop=3
-"set softtabstop=3
-"set shiftwidth=3
-
 set expandtab
 
 set autoindent
@@ -183,10 +171,12 @@ let g:airline_theme = 'solarized'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 
-autocmd! bufwritepost vimrc source ~/.vimrc   " When vimrc is edited, reload it
-
 " undotree.vim
 if has("persistent_undo")
     set undodir=~/.undodir/
     set undofile
 endif
+
+autocmd FileType vhdl setlocal shiftwidth=2
+autocmd FileType vhdl setlocal tabstop=2
+autocmd FileType vhdl setlocal softtabstop=2
