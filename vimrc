@@ -3,19 +3,28 @@ set nocompatible
 
 " Required for Vundle
 filetype off
+
 call vundle#rc()
 call vundle#begin()
-Plugin 'molokai'
+Plugin 'VundleVim/Vundle.vim'
+
 Plugin 'ScrollColors'
+Plugin 'molokai'
 Plugin 'solarized'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-airline/vim-airline'
+
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic'
+Plugin 'majutsushi/tagbar'
+
 Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-fugitive'
+
+Plugin 'tpope/vim-speeddating'
 Plugin 'jceb/vim-orgmode'
 Plugin 'mbbill/undotree'
+Plugin 'tpope/vim-surround'
 Plugin 'ctrlpvim/ctrlp.vim'
 call vundle#end()
 
