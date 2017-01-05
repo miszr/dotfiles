@@ -26,6 +26,7 @@ Plugin 'jceb/vim-orgmode'
 Plugin 'mbbill/undotree'
 Plugin 'tpope/vim-surround'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'jamessan/vim-gnupg'
 call vundle#end()
 
 " Required by vundle

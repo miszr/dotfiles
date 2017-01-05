@@ -226,6 +226,7 @@ globalkeys = awful.util.table.join(
     awful.key ( { }, "XF86AudioNext", function() awful.util.spawn ( cmd.skip ) end ),
     awful.key ( { }, "XF86MonBrightnessUp", function() awful.util.spawn ( "light -A 10" ) end ),
     awful.key ( { }, "XF86MonBrightnessDown", function() awful.util.spawn ( "light -U 10" ) end ),
+    awful.key ( { }, "XF86Display", function() awful.util.spawn ( "autoscreen" ) end ),
 
     -- Bind Lenovo F9-F12 fn keys to media
     awful.key ( { }, "XF86Tools", function() awful.util.spawn ( cmd.play ) end ),
