@@ -16,6 +16,7 @@ antigen use oh-my-zsh
 antigen bundles <<EOBUNDLES
 gitfast
 gitignore
+git-extras
 colored-man-pages
 extract
 vi-mode
