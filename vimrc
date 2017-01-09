@@ -27,6 +27,7 @@ Plugin 'mbbill/undotree'
 Plugin 'tpope/vim-surround'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jamessan/vim-gnupg'
+Plugin 'shougo/unite.vim'
 call vundle#end()
 
 " Required by vundle
@@ -182,3 +183,8 @@ autocmd FileType tex imap <silent> <buffer> <C-space> <Plug>Tex_Completion
 autocmd FileType vhdl setlocal shiftwidth=2
 autocmd FileType vhdl setlocal tabstop=2
 autocmd FileType vhdl setlocal softtabstop=2
+
+augroup Fix_airline_with_unite
+autocmd FileType unite AirlineRefresh
+autocmd FileType vimfiler AirlineRefresh
+augroup END
