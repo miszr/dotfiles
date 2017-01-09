@@ -179,10 +179,15 @@ if has("persistent_undo")
     set undofile
 endif
 
+augroup TeX
 autocmd FileType tex imap <silent> <buffer> <C-space> <Plug>Tex_Completion
+augroup END
+
+augroup vhdl
 autocmd FileType vhdl setlocal shiftwidth=2
 autocmd FileType vhdl setlocal tabstop=2
 autocmd FileType vhdl setlocal softtabstop=2
+augroup END
 
 augroup Fix_airline_with_unite
 autocmd FileType unite AirlineRefresh
