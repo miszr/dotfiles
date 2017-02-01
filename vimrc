@@ -1,34 +1,31 @@
 " Disable VI compatibility
 set nocompatible
 
-" Required for Vundle
-filetype off
 
-call vundle#rc()
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
-Plugin 'ScrollColors'
-Plugin 'molokai'
-Plugin 'solarized'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'vim-airline/vim-airline'
+Plug 'ScrollColors'
+Plug 'molokai'
+Plug 'solarized'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
 
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'
-Plugin 'majutsushi/tagbar'
+Plug 'Valloric/YouCompleteMe'
+Plug 'scrooloose/syntastic'
+Plug 'majutsushi/tagbar'
 
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
 
-Plugin 'tpope/vim-speeddating'
-Plugin 'jceb/vim-orgmode'
-Plugin 'mbbill/undotree'
-Plugin 'tpope/vim-surround'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'jamessan/vim-gnupg'
-Plugin 'shougo/unite.vim'
-call vundle#end()
+Plug 'tpope/vim-speeddating'
+Plug 'jceb/vim-orgmode'
+Plug 'mbbill/undotree'
+
+Plug 'tpope/vim-surround'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jamessan/vim-gnupg'
+Plug 'shougo/unite.vim'
+call plug#end()
 
 " Required by vundle
 filetype plugin indent on
