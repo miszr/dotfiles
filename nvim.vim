@@ -3,28 +3,24 @@ set nocompatible
 
 
 call plug#begin('~/.config/nvim/plugged')
-
-Plug 'ScrollColors'
-Plug 'molokai'
 Plug 'solarized'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
 Plug 'scrooloose/syntastic'
 Plug 'majutsushi/tagbar'
 
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-speeddating'
-Plug 'jceb/vim-orgmode'
+Plug 'jceb/vim-orgmode', { 'for': 'org' }
 Plug 'mbbill/undotree'
 
 Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jamessan/vim-gnupg'
-Plug 'shougo/unite.vim'
 call plug#end()
 
 " Required by vundle
