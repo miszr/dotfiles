@@ -1,13 +1,14 @@
 " Disable VI compatibility
 set nocompatible
 
-
 call plug#begin('~/.config/nvim/plugged')
 Plug 'solarized'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 
 Plug 'Valloric/YouCompleteMe'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'scrooloose/syntastic'
 Plug 'majutsushi/tagbar'
 
@@ -22,12 +23,6 @@ Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jamessan/vim-gnupg'
 call plug#end()
-
-" Required by vundle
-filetype plugin indent on
-
-" YCM Settings
-let g:ycm_confirm_extra_conf = 0
 
 " Set guioptions for gvim
 set guioptions=aAce
@@ -56,11 +51,6 @@ set number
 
 " Set the max tab count
 set tabpagemax=50
-
-" Enable filetype plugin
-filetype on
-filetype plugin on
-filetype indent on
 
 " Enable syntax
 syntax on
@@ -98,13 +88,6 @@ else
 endif
 color solarized
 
-" LaTeX
-set grepprg=grep\ -nH\ $*
-let g:tex_flavor = "latex"
-let g:Tex_DefaultTargetFormat='pdf'
-let g:Tex_ViewRule_pdf='evince &>/dev/null'
-let g:Tex_ViewRule_dvi='evince &>/dev/null'
-
 " System Clipboard
 set clipboard=unnamed
 
@@ -119,8 +102,6 @@ set matchtime=2   " How many tenths of a second to blink
 " Set backspace config
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
-
-"set colorcolumn=80   " Show where column 80 is.
 
 " Keyboard mappings
 " Space as Leader key
@@ -172,6 +153,23 @@ if has("persistent_undo")
     set undodir=~/.undodir/
     set undofile
 endif
+
+" LaTeX
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor = "latex"
+let g:Tex_DefaultTargetFormat='pdf'
+let g:Tex_ViewRule_pdf='evince &>/dev/null'
+let g:Tex_ViewRule_dvi='evince &>/dev/null'
+
+" YCM Settings
+let g:ycm_confirm_extra_conf = 0
+" use more stuff for the completions
+set complete=.,w,b,u,i
+
+" UltiSnips triggering
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
 augroup TeX
 autocmd FileType tex imap <silent> <buffer> <C-space> <Plug>Tex_Completion
