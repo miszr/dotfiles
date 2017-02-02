@@ -7,7 +7,7 @@ Plug 'solarized'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+Plug 'Valloric/YouCompleteMe'
 Plug 'scrooloose/syntastic'
 Plug 'majutsushi/tagbar'
 
