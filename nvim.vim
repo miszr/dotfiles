@@ -14,12 +14,14 @@ Plug 'majutsushi/tagbar'
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
+Plug 'mbbill/undotree'
 
 Plug 'tpope/vim-speeddating'
 Plug 'jceb/vim-orgmode', { 'for': 'org' }
-Plug 'mbbill/undotree'
 
 Plug 'tpope/vim-surround'
+Plug 'terryma/vim-multiple-cursors'
+
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jamessan/vim-gnupg'
 call plug#end()
