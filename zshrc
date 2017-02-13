@@ -6,7 +6,7 @@ COMPLETION_WAITING_DOTS="true"
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-zstyle :compinstall filename '/home/misz/.zshrc'
+zstyle :compinstall filename '${HOME}/.zshrc'
 zstyle ":completion:*:commands" rehash true
 setopt completealiases
 
