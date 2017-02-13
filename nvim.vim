@@ -9,12 +9,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'Valloric/YouCompleteMe'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'majutsushi/tagbar'
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
-Plug 'mbbill/undotree'
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
 Plug 'tpope/vim-speeddating'
 Plug 'jceb/vim-orgmode', { 'for': 'org' }
@@ -23,7 +23,7 @@ Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
 
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'jamessan/vim-gnupg'
+Plug 'jamessan/vim-gnupg', { 'for': ['asc', 'gpg'] }
 call plug#end()
 
 " Set guioptions for gvim
