@@ -347,7 +347,7 @@ globalkeys = awful.util.table.join(
               {description = "lua execute prompt", group = "awesome"}),
 
     -- Dmenu 
-    awful.key({ modkey }, "p", function() awful.util.spawn("dmenu_run -i -m " .. mouse.screen.index) end)
+    awful.key({ modkey }, "p", function() awful.util.spawn("dmenu_run -i -m " .. mouse.screen.index-1) end)
 )
 
 clientkeys = awful.util.table.join(
