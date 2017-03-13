@@ -23,7 +23,7 @@ Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
 
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'jamessan/vim-gnupg', { 'for': ['asc', 'gpg'] }
+Plug 'jamessan/vim-gnupg'
 call plug#end()
 
 " Set guioptions for gvim
