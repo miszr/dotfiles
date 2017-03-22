@@ -11,23 +11,7 @@ zstyle ":completion:*:commands" rehash true
 setopt completealiases
 
 source "${HOME}/.antigen/antigen.zsh"
-
-antigen use oh-my-zsh
-antigen bundles <<EOBUNDLES
-gitfast
-gitignore
-git-extras
-colored-man-pages
-extract
-vi-mode
-wd
-sudo
-zsh-users/zsh-syntax-highlighting
-zsh-users/zsh-autosuggestions
-EOBUNDLES
-
-antigen theme agnoster
-antigen apply
+antigen init "${HOME}/.antigenrc"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=4"
 
