@@ -11,8 +11,7 @@ URxvt.url-launcher: /usr/bin/chromium
 URxvt.matcher.button: 1
 URxvt.keysym.C-Up:     perl:font-size:increase
 URxvt.keysym.C-Down:   perl:font-size:decrease
-URxvt.keysym.C-S-Up:   perl:font-size:incglobal
-URxvt.keysym.C-S-Down: perl:font-size:decglobal
+URxvt.font-size.step: 4
 URxvt*font:     xft:DejavuSansMono:pixelsize=16,xft:DejavuSansMono\ for\ Powerline
 URxvt.intensityStyles: false
 
