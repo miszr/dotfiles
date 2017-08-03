@@ -2,7 +2,7 @@
 set nocompatible
 
 call plug#begin('~/.vim/plugged')
-Plug 'solarized'
+Plug 'lifepillar/vim-solarized8'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 
@@ -11,6 +11,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'w0rp/ale'
 Plug 'majutsushi/tagbar'
+Plug 'ervandew/supertab'
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
@@ -24,6 +25,9 @@ Plug 'terryma/vim-multiple-cursors'
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jamessan/vim-gnupg'
+
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'thaerkh/vim-workspace'
 call plug#end()
 
 " Set guioptions for gvim
@@ -87,7 +91,7 @@ else
     " Set terminal type
     set ttyfast
 endif
-color solarized
+color solarized8_light
 
 " System Clipboard
 set clipboard=unnamed
@@ -167,10 +171,26 @@ let g:ycm_confirm_extra_conf = 0
 " use more stuff for the completions
 set complete=.,w,b,u,i
 
-" UltiSnips triggering
-let g:UltiSnipsExpandTrigger = '<C-j>'
-let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" table-mode
+let g:table_mode_corner_corner='+'
+let g:table_mode_header_fillchar='='
+let g:table_mode_align_char=':'
+let g:table_mode_syntax=1
+let g:table_mode_auto_align=0
+
+" vim-workspace
+let g:workspace_autosave_untrailspaces = 0
 
 augroup TeX
 autocmd FileType tex imap <silent> <buffer> <C-space> <Plug>Tex_Completion
